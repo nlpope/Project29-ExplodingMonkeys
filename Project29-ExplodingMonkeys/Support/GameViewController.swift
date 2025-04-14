@@ -8,6 +8,8 @@ import GameplayKit
 
 class GameViewController: UIViewController
 {
+    var currentGame: GameScene!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -15,17 +17,16 @@ class GameViewController: UIViewController
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .fill
-                
-                // Present the scene
+                scene.scaleMode             = .fill
                 view.presentScene(scene)
+                currentGame                 = scene as? GameScene
+                currentGame.viewController  = self
             }
             
-            view.ignoresSiblingOrder = true
+            view.ignoresSiblingOrder    = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
+            view.showsFPS               = true
+            view.showsNodeCount         = true
         }
     }
 

@@ -10,3 +10,8 @@ enum CollisionTypes: UInt32
     case building   = 2
     case player     = 4
 }
+
+enum NameKeys
+{
+    static let building = "building"
+}
