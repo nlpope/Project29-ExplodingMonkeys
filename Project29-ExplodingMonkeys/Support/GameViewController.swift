@@ -6,8 +6,6 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-enum UIToggleModes { case on, off }
-
 class GameViewController: UIViewController
 {
     var currentGame: GameScene!
@@ -54,18 +52,22 @@ class GameViewController: UIViewController
     override var prefersStatusBarHidden: Bool { return true }
     
     
-    func setSlidersToDefault() { angleChanged(angleSlider!); velocityChanged(velocitySlider!) }
+    func setSlidersToDefault() { angleChanged(angleSlider); velocityChanged(velocitySlider) }
     
     //-------------------------------------//
     // MARK: SLIDER & BUTTON METHODS
+    /**
+     sender was of type Any but had to force unwrap respective sliders when I called it or cast it as 'Any'
+     so I just changed the expected sender to be UISlider b/c what else is it gonna be?
+     */
     
-    @IBAction func angleChanged(_ sender: Any) { angleLabel.text = "Angle: \(Int(angleSlider.value))°" }
+    @IBAction func angleChanged(_ sender: UISlider) { angleLabel.text = "Angle: \(Int(angleSlider.value))°" }
     
     
-    @IBAction func velocityChanged(_ sender: Any) { velocityLabel.text  = "Velocity: \(Int(velocitySlider.value))" }
+    @IBAction func velocityChanged(_ sender: UISlider) { velocityLabel.text  = "Velocity: \(Int(velocitySlider.value))" }
     
     
-    @IBAction func launch(_ sender: Any)
+    @IBAction func launchTapped(_ sender: Any)
     {
         toggleUI(.off)
         currentGame.launch(angle: Int(angleSlider.value), velocity: Int(velocitySlider.value))
@@ -100,7 +102,6 @@ class GameViewController: UIViewController
     {
         if number == 1 { playerNumber.text = "<<< PLAYER ONE" }
         else { playerNumber.text = "PLAYER TWO >>>" }
-        
         toggleUI(.on)
     }
 }

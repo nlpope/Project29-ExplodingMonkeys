@@ -11,7 +11,14 @@ enum CollisionTypes: UInt32
     case player     = 4
 }
 
+enum UIToggleModes { case on, off }
+
 enum NameKeys
 {
     static let building = "building"
+}
+
+enum ImageKeys
+{
+    static let player   = "player"
 }
