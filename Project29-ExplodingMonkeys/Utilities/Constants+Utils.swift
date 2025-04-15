@@ -16,6 +16,10 @@ enum UIToggleModes { case on, off }
 enum NameKeys
 {
     static let building = "building"
+    static let player   = "player"
+    static let banana   = "banana"
+    static let player1  = "player1"
+    static let player2  = "player2"
 }
 
 enum ImageKeys
@@ -24,4 +28,15 @@ enum ImageKeys
     static let banana       = "banana"
     static let player1Throw = "player1Throw"
     static let player2Throw = "player2Throw"
+}
+
+enum EmitterKeys
+{
+    static let hitPlayer    = "hitPlayer"
+}
+
+enum UIKeys
+{
+    static let activatePlayer1  = "<<< PLAYER ONE"
+    static let activatePlayer2  = "PLAYER TWO >>>"
 }

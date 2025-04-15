@@ -100,8 +100,8 @@ class GameViewController: UIViewController
     
     func activatePlayer(number: Int)
     {
-        if number == 1 { playerNumber.text = "<<< PLAYER ONE" }
-        else { playerNumber.text = "PLAYER TWO >>>" }
+        if number == 1 { playerNumber.text = UIKeys.activatePlayer1 }
+        else { playerNumber.text = UIKeys.activatePlayer2 }
         toggleUI(.on)
     }
 }
