@@ -66,4 +66,10 @@ class BuildingNode: SKSpriteNode
         physicsBody?.categoryBitMask    = CollisionTypes.building.rawValue // 2
         physicsBody?.contactTestBitMask = CollisionTypes.banana.rawValue // 1
     }
+    
+    
+    func hit(at point: CGPoint)
+    {
+        // takin off chunks from the bldg
+    }
 }

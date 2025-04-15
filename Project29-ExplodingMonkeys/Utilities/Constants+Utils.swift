@@ -33,6 +33,7 @@ enum ImageKeys
 enum EmitterKeys
 {
     static let hitPlayer    = "hitPlayer"
+    static let hitBuilding  = "hitBuilding"
 }
 
 enum UIKeys

@@ -90,7 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
     
     //-------------------------------------//
-    // MARK: ASSET CONTACT, DESTRUCTION, & CONTROL TRANSFER
+    // MARK: ASSET CONTACT & DESTRUCTION
     
     func destroy(player: SKSpriteNode)
     {
@@ -114,21 +114,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             self.view?.presentScene(newGame, transition: transition)
         }
     }
+
     
-    #warning("I dont fully understand how convert() works")
+    /** the banana hit the bldg w respect to its parent's (GameScene's) coordinate sys. */
     func bananaHit(building: SKNode, atPoint contactPoint: CGPoint)
     {
         guard let building      = building as? BuildingNode else { return }
         let buildingLocation    = convert(contactPoint, to: building)
         
-    }
-    
-    
-    func changePlayer()
-    {
-        if currentPlayer == 1 { currentPlayer = 2 }
-        else { currentPlayer = 1 }
-        viewController.activatePlayer(number: currentPlayer)
+        /**
+         this bldg needs to know exactly where in its own coordinate system it was hit
+         ...in order to make the crumble edit at that point (it has its own origin at the bldg's (node's) center
+         ...so the Gamescene detects the contactPoint w respect to its own coord. sys. then this conversion
+         ...allows the bldg to "damage" itself by converting the GameScene's hit zone to the bldg's hit zone
+         */
+        
+        building.hit(at: buildingLocation)
+        if let explosion        = SKEmitterNode(fileNamed: EmitterKeys.hitBuilding) {
+            explosion.position = contactPoint
+            addChild(explosion)
+        }
+        
+        banana.name             = ""
+        banana.removeFromParent()
+        banana                  = nil
+        
+        changePlayer()
     }
     
     
@@ -155,6 +166,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if firstNode.name == NameKeys.banana && secondNode.name == NameKeys.player2 {
             destroy(player: player2)
         }
+    }
+    
+    //-------------------------------------//
+    // MARK: CONTROL TRANSFER
+    
+    func changePlayer()
+    {
+        if currentPlayer == 1 { currentPlayer = 2 }
+        else { currentPlayer = 1 }
+        viewController.activatePlayer(number: currentPlayer)
     }
     
     //-------------------------------------//
