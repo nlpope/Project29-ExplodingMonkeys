@@ -17,6 +17,8 @@
 		4083E7AE2DA6F89100477EC5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4083E7A12DA6F89100477EC5 /* GameViewController.swift */; };
 		4083E7B92DA6FC3F00477EC5 /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4083E7B82DA6FC3F00477EC5 /* BuildingNode.swift */; };
 		4083E7C32DA6FDF000477EC5 /* Constants+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4083E7C22DA6FDF000477EC5 /* Constants+Utils.swift */; };
+		40AE54872DAE298500DC1EE0 /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40AE54862DAE298500DC1EE0 /* hitPlayer.sks */; };
+		40AE54882DAE298500DC1EE0 /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40AE54852DAE298500DC1EE0 /* hitBuilding.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		4083E7A42DA6F89100477EC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4083E7B82DA6FC3F00477EC5 /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
 		4083E7C22DA6FDF000477EC5 /* Constants+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Utils.swift"; sourceTree = "<group>"; };
+		40AE54852DAE298500DC1EE0 /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
+		40AE54862DAE298500DC1EE0 /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -139,6 +143,8 @@
 			children = (
 				4083E79C2DA6F89100477EC5 /* Actions.sks */,
 				4083E79F2DA6F89100477EC5 /* GameScene.sks */,
+				40AE54852DAE298500DC1EE0 /* hitBuilding.sks */,
+				40AE54862DAE298500DC1EE0 /* hitPlayer.sks */,
 			);
 			path = Sks;
 			sourceTree = "<group>";
@@ -287,6 +293,8 @@
 				4083E7A72DA6F89100477EC5 /* Actions.sks in Resources */,
 				4083E7A82DA6F89100477EC5 /* Assets.xcassets in Resources */,
 				4083E7A92DA6F89100477EC5 /* GameScene.sks in Resources */,
+				40AE54872DAE298500DC1EE0 /* hitPlayer.sks in Resources */,
+				40AE54882DAE298500DC1EE0 /* hitBuilding.sks in Resources */,
 				4083E7AA2DA6F89100477EC5 /* LaunchScreen.storyboard in Resources */,
 				4083E7AB2DA6F89100477EC5 /* Main.storyboard in Resources */,
 			);

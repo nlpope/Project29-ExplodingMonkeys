@@ -20,5 +20,8 @@ enum NameKeys
 
 enum ImageKeys
 {
-    static let player   = "player"
+    static let player       = "player"
+    static let banana       = "banana"
+    static let player1Throw = "player1Throw"
+    static let player2Throw = "player2Throw"
 }
