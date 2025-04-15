@@ -6,7 +6,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene
+class GameScene: SKScene, SKPhysicsContactDelegate
 {
     weak var viewController: GameViewController!
     var buildings       = [BuildingNode]()
@@ -20,8 +20,33 @@ class GameScene: SKScene
     {
         colorNightSky()
         createBuildings()
-        player1 = createPlayer("player1", onBuilding: buildings[1])
-        player2 = createPlayer("player2", onBuilding: buildings[buildings.count - 2])
+        setContactDelegate()
+        setPlayerNodes()
+    }
+    
+    
+    func didBegin(_ contact: SKPhysicsContact)
+    {
+        let firstBody: SKPhysicsBody
+        let secondBody: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody   = contact.bodyA
+            secondBody  = contact.bodyB
+        } else {
+            firstBody   = contact.bodyB
+            secondBody  = contact.bodyA
+        }
+    }
+    
+    
+    func setContactDelegate() { physicsWorld.contactDelegate = self }
+    
+    
+    func setPlayerNodes()
+    {
+        player1                         = createPlayer("player1", onBuilding: buildings[1])
+        player2                         = createPlayer("player2", onBuilding: buildings[buildings.count - 2])
     }
     
     //-------------------------------------//
@@ -50,7 +75,7 @@ class GameScene: SKScene
     
     func createPlayer(_ name: String, onBuilding playerBuilding: BuildingNode) -> SKSpriteNode
     {
-        var player                              = SKSpriteNode(imageNamed: ImageKeys.player)
+        let player                              = SKSpriteNode(imageNamed: ImageKeys.player)
         player.name                             = name
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
         player.physicsBody?.categoryBitMask    = CollisionTypes.player.rawValue
@@ -64,7 +89,7 @@ class GameScene: SKScene
         return player
     }
     
-    
+    #warning("what are the pipes '|' accomplishing?")
     func createBanana()
     {
         banana                                  = SKSpriteNode(imageNamed: ImageKeys.banana)
@@ -76,6 +101,20 @@ class GameScene: SKScene
         banana.physicsBody?.usesPreciseCollisionDetection = true
         
         addChild(banana)
+    }
+    
+    //-------------------------------------//
+    // MARK: ASSET DESTRUCTION
+    
+    func destroy(player: SKSpriteNode)
+    {
+        
+    }
+    
+    
+    func bananaHit(building: BuildingNode)
+    {
+        
     }
     
     //-------------------------------------//
