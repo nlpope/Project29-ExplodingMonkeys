@@ -101,9 +101,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         player.removeFromParent()
         destroyBanana()
-//        banana.removeFromParent()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let newGame                     = GameScene(size: self.size)
             newGame.viewController          = self.viewController
             self.viewController.currentGame = newGame
@@ -144,11 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             addChild(explosion)
         }
         
-//        banana.name             = ""
-//        banana.removeFromParent()
-//        banana                  = nil
         destroyBanana()
-        
         changePlayer()
     }
     
@@ -173,6 +168,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             bananaHit(building: secondNode, atPoint: contact.contactPoint)
         }
         
+        if firstNode.name == NameKeys.banana && secondNode.name == NameKeys.player1 {
+            destroy(player: player1)
+        }
+        
         if firstNode.name == NameKeys.banana && secondNode.name == NameKeys.player2 {
             destroy(player: player2)
         }
@@ -195,7 +194,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         let speed   = Double(velocity) / 10.0
         let radians = Algorithms.ConversionHelper.deg2rad(degrees: angle)
-//        if banana != nil { banana.removeFromParent(); banana = nil }
         if banana != nil { destroyBanana() }
         createBanana()
         if currentPlayer == 1 { runThrowAnimation(for: player1, speed: speed, radians: radians) }
@@ -211,7 +209,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func runThrowAnimation(for player: SKSpriteNode, speed: Double, radians: Double)
     {
         let playerXPosition                 = player == player1 ? player.position.x - 30 : player.position.x + 30
-        let angularVelocity:CGFloat         = player == player1 ? -20 : 20
+        let angularVelocity: CGFloat        = player == player1 ? -20 : 20
+        let playerDxSpeed                   = player == player1 ? speed : -speed
         let throwImg                        = player == player1 ? ImageKeys.player1Throw : ImageKeys.player2Throw
         
         banana.position                     = CGPoint(x: playerXPosition, y: player.position.y + 40)
@@ -223,7 +222,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         let sequence                        = SKAction.sequence([raiseArm, pause, lowerArm])
         player.run(sequence)
         
-        let impulse                         = CGVector(dx: cos(radians) * speed, dy: sin(radians) * speed)
+        let impulse                         = CGVector(dx: cos(radians) * playerDxSpeed, dy: sin(radians) * speed)
         banana.physicsBody?.applyImpulse(impulse)
+    }
+    
+    
+    override func update(_ currentTime: TimeInterval) {
+        guard banana != nil else { return }
+        if abs(banana.position.y) > 1000 { destroyBanana(); changePlayer() }
     }
 }
