@@ -75,13 +75,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         return player
     }
     
-    #warning("what are the pipes '|' accomplishing?")
+
     func createBanana()
     {
         banana                                  = SKSpriteNode(imageNamed: ImageKeys.banana)
         banana.name                             = NameKeys.banana
         banana.physicsBody                      = SKPhysicsBody(circleOfRadius: banana.size.width / 2)
         banana.physicsBody?.categoryBitMask     = CollisionTypes.banana.rawValue
+        
+        /**
+         the vertical pipe is a bitwise OR operator
+         it combines the bits that make up the building and the player ( in this case the bits that make up 2 and 4)
+         ...then combines those bits into one new bit mask representative of the meshed together 2 and 4
+         ...combining just means comparing between the two to see if 1 is present in either then setting tha point to 1 in the result if so
+         ...so whenever it hits either, the new frankenstein's bit mask will sense it matches one of them and collide/handle the collision
+         
+         00000010 = 2
+         00000100 = 4
+         00000110 = 2 | 4
+         */
+        
         banana.physicsBody?.collisionBitMask    = CollisionTypes.building.rawValue | CollisionTypes.player.rawValue
         banana.physicsBody?.contactTestBitMask  = CollisionTypes.building.rawValue | CollisionTypes.player.rawValue
         banana.physicsBody?.usesPreciseCollisionDetection = true
@@ -200,11 +213,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         else { runThrowAnimation(for: player2, speed: speed, radians: radians) }
     }
     
-    /**
-     if player 2 was throwing the banana, position it up and to the right ,
-     ...apply the opposite spin,
-     ...then make it move in the correct direction
-     */
     
     func runThrowAnimation(for player: SKSpriteNode, speed: Double, radians: Double)
     {
