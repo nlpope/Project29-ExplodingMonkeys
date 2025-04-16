@@ -100,7 +100,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         
         player.removeFromParent()
-        banana.removeFromParent()
+        destroyBanana()
+//        banana.removeFromParent()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let newGame                     = GameScene(size: self.size)
@@ -114,6 +115,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             self.view?.presentScene(newGame, transition: transition)
         }
     }
+    
+    
+    func destroyBanana()
+    {
+        banana.name             = ""
+        banana.removeFromParent()
+        banana                  = nil
+    }
 
     
     /** the banana hit the bldg w respect to its parent's (GameScene's) coordinate sys. */
@@ -124,7 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         /**
          this bldg needs to know exactly where in its own coordinate system it was hit
-         ...in order to make the crumble edit at that point (it has its own origin at the bldg's (node's) center
+         ...in order to make the crumble edit at that point (it has its own origin at the bldg's (node's) center)
          ...so the Gamescene detects the contactPoint w respect to its own coord. sys. then this conversion
          ...allows the bldg to "damage" itself by converting the GameScene's hit zone to the bldg's hit zone
          */
@@ -135,9 +144,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             addChild(explosion)
         }
         
-        banana.name             = ""
-        banana.removeFromParent()
-        banana                  = nil
+//        banana.name             = ""
+//        banana.removeFromParent()
+//        banana                  = nil
+        destroyBanana()
         
         changePlayer()
     }
@@ -185,7 +195,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         let speed   = Double(velocity) / 10.0
         let radians = Algorithms.ConversionHelper.deg2rad(degrees: angle)
-        if banana != nil { banana.removeFromParent(); banana = nil }
+//        if banana != nil { banana.removeFromParent(); banana = nil }
+        if banana != nil { destroyBanana() }
         createBanana()
         if currentPlayer == 1 { runThrowAnimation(for: player1, speed: speed, radians: radians) }
         else { runThrowAnimation(for: player2, speed: speed, radians: radians) }
