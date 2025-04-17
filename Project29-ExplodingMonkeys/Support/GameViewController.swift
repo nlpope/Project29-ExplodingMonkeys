@@ -15,6 +15,8 @@ class GameViewController: UIViewController
     @IBOutlet var velocityLabel: UILabel!
     @IBOutlet var launchButton: UIButton!
     @IBOutlet var playerNumber: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
+  
     
     override func viewDidLoad()
     {
@@ -51,6 +53,8 @@ class GameViewController: UIViewController
     
     override var prefersStatusBarHidden: Bool { return true }
     
+    //-------------------------------------//
+    // MARK: SETUP
     
     func setSlidersToDefault() { angleChanged(angleSlider); velocityChanged(velocitySlider) }
     
@@ -74,7 +78,7 @@ class GameViewController: UIViewController
     }
     
     //-------------------------------------//
-    // MARK: UI & PLAYER ACTIVATION METHODS
+    // MARK: UI, PLAYER ACTIVATION, & SCORE METHODS
     
     func toggleUI(_ mode: UIToggleModes)
     {

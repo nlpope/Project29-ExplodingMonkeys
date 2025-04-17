@@ -69,19 +69,29 @@
                                     <action selector="launchTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="5MB-Yq-leO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTi-SQ-uAR">
+                                <rect key="frame" x="414" y="661" width="196" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="hW3-Xt-Whu" secondAttribute="trailing" constant="4" id="0za-ws-ynS"/>
                             <constraint firstItem="ppT-LV-pea" firstAttribute="leading" secondItem="kMn-XN-lpC" secondAttribute="trailing" constant="37" id="2Fd-l4-TfO"/>
+                            <constraint firstItem="kTi-SQ-uAR" firstAttribute="centerX" secondItem="fAM-Zw-Aal" secondAttribute="centerX" id="31Q-Em-9qq"/>
                             <constraint firstItem="kMn-XN-lpC" firstAttribute="baseline" secondItem="dDO-5z-r1q" secondAttribute="baseline" id="3Pt-c0-mvh"/>
+                            <constraint firstItem="kTi-SQ-uAR" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="414" id="56K-9O-7PF"/>
                             <constraint firstItem="fAM-Zw-Aal" firstAttribute="top" secondItem="kMn-XN-lpC" secondAttribute="bottom" constant="15" id="66J-Mg-wEM"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="dDO-5z-r1q" secondAttribute="trailing" constant="119" id="9T9-an-D2I"/>
                             <constraint firstItem="kMn-XN-lpC" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="4" id="9q6-qF-KV9"/>
                             <constraint firstItem="ppT-LV-pea" firstAttribute="centerY" secondItem="hW3-Xt-Whu" secondAttribute="centerY" id="D54-e3-b6k"/>
                             <constraint firstItem="hW3-Xt-Whu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ppT-LV-pea" secondAttribute="trailing" constant="8" symbolic="YES" id="DHU-gj-QnT"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="fAM-Zw-Aal" secondAttribute="bottom" constant="669" id="L15-Mt-aKP"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="kTi-SQ-uAR" secondAttribute="bottom" constant="79" id="M7v-H3-OJw"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="zpb-BK-gid" secondAttribute="bottom" constant="719" id="NFH-ru-7yy"/>
                             <constraint firstItem="zpb-BK-gid" firstAttribute="bottom" secondItem="kMn-XN-lpC" secondAttribute="bottom" id="NlJ-Fe-Xzn"/>
                             <constraint firstItem="kMn-XN-lpC" firstAttribute="firstBaseline" secondItem="dDO-5z-r1q" secondAttribute="firstBaseline" id="QVU-23-BPX"/>
@@ -101,6 +111,7 @@
                         <outlet property="angleSlider" destination="zpb-BK-gid" id="x22-AA-M0f"/>
                         <outlet property="launchButton" destination="hW3-Xt-Whu" id="81G-na-WdR"/>
                         <outlet property="playerNumber" destination="fAM-Zw-Aal" id="AtW-aP-eJD"/>
+                        <outlet property="scoreLabel" destination="kTi-SQ-uAR" id="miQ-cN-3UN"/>
                         <outlet property="velocityLabel" destination="dDO-5z-r1q" id="A2u-8I-Cjw"/>
                         <outlet property="velocitySlider" destination="ppT-LV-pea" id="7LT-70-Nic"/>
                     </connections>
@@ -115,7 +126,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

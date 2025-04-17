@@ -8,6 +8,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
+    // this is me keeping a weak hold on what will ultimately fade away
     #warning("why a weak var here but not the same in the GameVC")
     weak var viewController: GameViewController!
     var buildings       = [BuildingNode]()
@@ -16,6 +17,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var player2: SKSpriteNode!
     var currentPlayer   = 1
     var banana: SKSpriteNode!
+    var player1Score = 0 {
+        didSet { viewController.scoreLabel.text = "\(player1Score) >Score< \(player2Score)" }
+    }
+    var player2Score = 0 {
+        didSet { viewController.scoreLabel.text = "\(player1Score) >Score< \(player2Score)" }
+    }
     
     override func didMove(to view: SKView)
     {
@@ -23,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         createBuildings()
         setContactDelegate()
         setPlayerNodes()
+        setScoresToDefault()
     }
     
     
@@ -34,6 +42,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         player1 = createPlayer(NameKeys.player1, onBuilding: buildings[1])
         player2 = createPlayer(NameKeys.player2, onBuilding: buildings[buildings.count - 2])
     }
+    
+    
+    func setScoresToDefault() { player1Score = 0; player2Score = 0 }
     
     //-------------------------------------//
     // MARK: ASSET CREATION
@@ -114,6 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         player.removeFromParent()
         destroyBanana()
+        addOne(toScore: player == player1 ? player2Score : player1Score)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let newGame                     = GameScene(size: self.size)
@@ -191,6 +203,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
     
     //-------------------------------------//
+    // MARK: POINT HANDLER
+    
+    func addOne(toScore playerScore: Int )
+    {
+        if playerScore == player1Score { player1Score += 1 }
+        else { player2Score += 1 }
+        if player1Score == 3 || player2Score == 3 { endGame() }
+    }
+    
+    //-------------------------------------//
     // MARK: CONTROL TRANSFER
     
     func changePlayer()
@@ -238,5 +260,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     override func update(_ currentTime: TimeInterval) {
         guard banana != nil else { return }
         if abs(banana.position.y) > 1000 { destroyBanana(); changePlayer() }
+    }
+    
+    
+    func endGame()
+    {
+        print("game over")
     }
 }

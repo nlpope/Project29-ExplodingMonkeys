@@ -6,6 +6,7 @@ import Foundation
 
 enum CollisionTypes: UInt32
 {
+    /** raw values for physics body bitmasks should be integers that are double the value of the previous case */
     case banana     = 1
     case building   = 2
     case player     = 4
