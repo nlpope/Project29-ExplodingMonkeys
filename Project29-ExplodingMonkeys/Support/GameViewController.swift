@@ -29,12 +29,15 @@ class GameViewController: UIViewController
     func loadScene()
     {
         if let view = self.view as! SKView? {
-            /** Load the SKScene from 'GameScene.sks' */
             if let scene = SKScene(fileNamed: "GameScene") {
                 scene.scaleMode             = .fill
-                view.presentScene(scene)
                 currentGame                 = scene as? GameScene
                 currentGame.viewController  = self
+                /**
+                 was presenting scene (which calls its didMove func) before setting the currentGame & its viewController
+                 this caused my gameScene's score label didSet settings to crash my app
+                 */
+                view.presentScene(scene)
             }
             
             view.ignoresSiblingOrder    = true

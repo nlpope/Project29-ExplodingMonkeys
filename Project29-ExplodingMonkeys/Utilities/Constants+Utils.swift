@@ -21,6 +21,7 @@ enum NameKeys
     static let banana   = "banana"
     static let player1  = "player1"
     static let player2  = "player2"
+    static let gameOver = "gameOver"
 }
 
 enum ImageKeys
@@ -29,6 +30,7 @@ enum ImageKeys
     static let banana       = "banana"
     static let player1Throw = "player1Throw"
     static let player2Throw = "player2Throw"
+    static let gameOver     = "gameOver"
 }
 
 enum EmitterKeys
