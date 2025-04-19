@@ -44,3 +44,8 @@ enum UIKeys
     static let activatePlayer1  = "<<< PLAYER ONE"
     static let activatePlayer2  = "PLAYER TWO >>>"
 }
+
+enum FontKeys
+{
+    static let chalkDuster  = "chalkDuster"
+}

@@ -16,11 +16,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var currentPlayer   = 1
     var currentLevel    = 1
     var banana: SKSpriteNode!
+    var windValue: CGFloat!
     var player1Score: Int! {
-        didSet { self.viewController.scoreLabel.text = "\(player1Score ?? 0)  >Score<  \(player2Score ?? 0)" }
+        didSet { self.viewController.scoreLabel.text = "\(player1Score ?? 0)  > Score <  \(player2Score ?? 0)" }
     }
     var player2Score: Int! {
-        didSet { self.viewController.scoreLabel.text = "\(player1Score ?? 0)  >Score<  \(player2Score ?? 0)" }
+        didSet { self.viewController.scoreLabel.text = "\(player1Score ?? 0)  > Score <  \(player2Score ?? 0)" }
     }
     
     /** called when scene is presented  */
@@ -30,9 +31,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         createBuildings()
         setContactDelegate()
         setPlayerNodes()
+        setWind()
         if currentLevel == 1 { setScoresToDefault() }
     }
     
+    //-------------------------------------//
+    // MARK: SETUP
     
     func setContactDelegate() { physicsWorld.contactDelegate = self }
     
@@ -41,6 +45,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         player1 = createPlayer(NameKeys.player1, onBuilding: buildings[1])
         player2 = createPlayer(NameKeys.player2, onBuilding: buildings[buildings.count - 2])
+    }
+    
+    
+    func setWind()
+    {
+        let randomFloat         = CGFloat.random(in: -15...15)
+        physicsWorld.gravity    = CGVectorMake(randomFloat, -9.8)
+        windValue               = randomFloat.rounded()
+        if randomFloat == 0 { viewController.windLabel.text = "WIND: 0mph" }
+        else {
+            viewController
+                .windLabel
+                .text = randomFloat < 0 ? "<<< WIND: \(windValue!)mph" : "WIND: \(windValue!)mph >>>"
+        }
+        
     }
     
     
@@ -127,7 +146,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         destroyBanana()
         addOnePoint(toPlayer: player == player1 ? 2 : 1)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { self.startNewGame() }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if self.player1Score == 3 || self.player2Score == 3 { self.endGame() }
+            else { self.startNewGame() }
+        }
     }
     
     
@@ -199,7 +221,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         if player == 1 { player1Score += 1 }
         else { player2Score += 1 }
-        if player1Score == 3 || player2Score == 3 { endGame() }
     }
     
     //-------------------------------------//
@@ -255,6 +276,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     //-------------------------------------//
     // MARK: GAME START & END
     
+    func wipeAssetsForEndGame()
+    {
+        viewController.toggleUI(.off)
+
+        for building in buildings {
+            building.name             = ""
+            building.removeFromParent()
+        }
+        
+        player1.name = ""
+        player1.removeFromParent()
+        player2.name = ""
+        player2.removeFromParent()
+        viewController.playerNumber.isHidden    = true
+        viewController.scoreLabel.isHidden      = true
+    }
+    
+    
     func startNewGame()
     {
         let newGame                     = GameScene(size: self.size)
@@ -267,14 +306,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         self.changePlayer()
         newGame.currentPlayer           = self.currentPlayer
         
-        //change back to 1.5
-        let transition                  = SKTransition.doorway(withDuration: 5.5)
+        self.setWind()
+        
+        let transition                  = SKTransition.doorway(withDuration: 1.5)
         self.view?.presentScene(newGame, transition: transition)
     }
     
     
     func endGame()
     {
-        print("game over")
+        wipeAssetsForEndGame()
+        
+        let gameOver                = SKSpriteNode(imageNamed: ImageKeys.gameOver)
+        gameOver.position           = CGPoint(x: 512, y: 450)
+        gameOver.zPosition          = 1
+        addChild(gameOver)
+        
+        let finalScore              = SKLabelNode(fontNamed: FontKeys.chalkDuster)
+        finalScore.text             = "Final Scores \n Player 1: \(player1Score!) \n Player 2: \(player2Score!)"
+        finalScore.position         = CGPoint(x: 512, y: 250)
+        finalScore.zPosition        = 1
+        finalScore.fontSize         = 35
+        finalScore.numberOfLines    = 0
+        addChild(finalScore)
+        
+        return
     }
 }

@@ -16,7 +16,7 @@ class GameViewController: UIViewController
     @IBOutlet var launchButton: UIButton!
     @IBOutlet var playerNumber: UILabel!
     @IBOutlet var scoreLabel: UILabel!
-  
+    @IBOutlet var windLabel: UILabel!
     
     override func viewDidLoad()
     {

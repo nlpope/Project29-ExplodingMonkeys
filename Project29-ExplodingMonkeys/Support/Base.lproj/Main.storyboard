@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;&lt; PLAYER ONE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAM-Zw-Aal">
-                                <rect key="frame" x="370" y="64" width="284" height="35"/>
+                                <rect key="frame" x="444.5" y="64" width="135" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -76,6 +76,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbj-ra-rto">
+                                <rect key="frame" x="785" y="57" width="219" height="35"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -86,10 +92,12 @@
                             <constraint firstItem="kMn-XN-lpC" firstAttribute="baseline" secondItem="dDO-5z-r1q" secondAttribute="baseline" id="3Pt-c0-mvh"/>
                             <constraint firstItem="kTi-SQ-uAR" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="414" id="56K-9O-7PF"/>
                             <constraint firstItem="fAM-Zw-Aal" firstAttribute="top" secondItem="kMn-XN-lpC" secondAttribute="bottom" constant="15" id="66J-Mg-wEM"/>
+                            <constraint firstItem="Bbj-ra-rto" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailingMargin" id="7KY-sn-IgE"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="dDO-5z-r1q" secondAttribute="trailing" constant="119" id="9T9-an-D2I"/>
                             <constraint firstItem="kMn-XN-lpC" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="4" id="9q6-qF-KV9"/>
                             <constraint firstItem="ppT-LV-pea" firstAttribute="centerY" secondItem="hW3-Xt-Whu" secondAttribute="centerY" id="D54-e3-b6k"/>
                             <constraint firstItem="hW3-Xt-Whu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ppT-LV-pea" secondAttribute="trailing" constant="8" symbolic="YES" id="DHU-gj-QnT"/>
+                            <constraint firstItem="Bbj-ra-rto" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="4qk-I5-YsI" secondAttribute="trailing" constant="-20" id="KYs-IS-0qD"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="fAM-Zw-Aal" secondAttribute="bottom" constant="669" id="L15-Mt-aKP"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="kTi-SQ-uAR" secondAttribute="bottom" constant="79" id="M7v-H3-OJw"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="zpb-BK-gid" secondAttribute="bottom" constant="719" id="NFH-ru-7yy"/>
@@ -99,11 +107,13 @@
                             <constraint firstItem="fAM-Zw-Aal" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="bsy-6J-O4y"/>
                             <constraint firstItem="kMn-XN-lpC" firstAttribute="leading" secondItem="zpb-BK-gid" secondAttribute="trailing" constant="7" id="ccJ-Pd-yB5"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="hW3-Xt-Whu" secondAttribute="bottom" constant="711" id="gCg-Qq-ghb"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="Bbj-ra-rto" secondAttribute="bottom" constant="676" id="hWm-2u-YR7"/>
                             <constraint firstItem="zpb-BK-gid" firstAttribute="top" secondItem="ppT-LV-pea" secondAttribute="top" id="kzR-Mq-dvp"/>
+                            <constraint firstItem="Bbj-ra-rto" firstAttribute="top" secondItem="hW3-Xt-Whu" secondAttribute="bottom" id="ovz-ln-BmR"/>
                             <constraint firstItem="dDO-5z-r1q" firstAttribute="leading" secondItem="ppT-LV-pea" secondAttribute="trailing" constant="7" id="po6-sd-vRn"/>
                             <constraint firstItem="zpb-BK-gid" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="ruv-Uo-aqp"/>
                             <constraint firstItem="zpb-BK-gid" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="22" id="tGv-mf-Dwc"/>
-                            <constraint firstItem="fAM-Zw-Aal" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="370" id="y73-DE-TS2"/>
+                            <constraint firstItem="Bbj-ra-rto" firstAttribute="leading" secondItem="dDO-5z-r1q" secondAttribute="leading" id="v7l-ar-gyx"/>
                         </constraints>
                     </view>
                     <connections>
@@ -114,6 +124,7 @@
                         <outlet property="scoreLabel" destination="kTi-SQ-uAR" id="miQ-cN-3UN"/>
                         <outlet property="velocityLabel" destination="dDO-5z-r1q" id="A2u-8I-Cjw"/>
                         <outlet property="velocitySlider" destination="ppT-LV-pea" id="7LT-70-Nic"/>
+                        <outlet property="windLabel" destination="Bbj-ra-rto" id="oe1-5a-am8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
