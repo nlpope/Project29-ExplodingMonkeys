@@ -92,15 +92,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func createPlayer(_ name: String, onBuilding playerBuilding: BuildingNode) -> SKSpriteNode
     {
         let player                              = SKSpriteNode(imageNamed: ImageKeys.player)
-        player.name                             = name
-        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
-        player.physicsBody?.categoryBitMask    = CollisionTypes.player.rawValue
-        player.physicsBody?.collisionBitMask   = CollisionTypes.banana.rawValue
-        player.physicsBody?.contactTestBitMask = CollisionTypes.banana.rawValue
-        player.physicsBody?.isDynamic          = false
+        let adjustedHeight                      = ((playerBuilding.size.height + player.size.height) / 2)
         
-        player.position    = CGPoint(x: playerBuilding.position.x,
-                                      y: playerBuilding.position.y + ((playerBuilding.size.height + player.size.height) / 2))
+        player.name                             = name
+        player.physicsBody                      = SKPhysicsBody(circleOfRadius: player.size.width / 2)
+        player.physicsBody?.categoryBitMask     = CollisionTypes.player.rawValue
+        player.physicsBody?.collisionBitMask    = CollisionTypes.banana.rawValue
+        player.physicsBody?.contactTestBitMask  = CollisionTypes.banana.rawValue
+        player.physicsBody?.isDynamic           = false
+        
+        player.position                         = CGPoint(x: playerBuilding.position.x,
+                                                          y: playerBuilding.position.y + adjustedHeight)
         addChild(player)
         return player
     }
