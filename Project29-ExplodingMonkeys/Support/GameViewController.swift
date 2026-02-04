@@ -31,6 +31,9 @@ class GameViewController: UIViewController
         if let view = self.view as! SKView? {
             if let scene = SKScene(fileNamed: "GameScene") {
                 scene.scaleMode             = .fill
+                //but maybe try resize fill for things from now on - seems to work well all around 
+//                scene.scaleMode = .resizeFill
+
                 currentGame                 = scene as? GameScene
                 currentGame.viewController  = self
                 /**
